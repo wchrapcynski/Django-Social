@@ -28,6 +28,9 @@ class Group(models.Model):
     def absolute_url(self):
         return reverse('group:single', kwargs={'slug':self.splug})
 
+    class Meta:
+        ordering = ['name']
+
 
 class GroupMember(models.Model):
     group = models.ForeignKey(group, related_name='memberships',
