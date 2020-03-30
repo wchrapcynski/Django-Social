@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 
 # Create your models here.
 import misaka
@@ -25,8 +26,8 @@ class Group(models.Model):
         self.description_html = misaka.html(self.description)
         super().save(*args,**kwargs)
 
-    def absolute_url(self):
-        return reverse('group:single', kwargs={'slug':self.splug})
+    def get_absolute_url(self):
+        return reverse('groups:single', kwargs={'slug':self.slug})
 
     class Meta:
         ordering = ['name']
